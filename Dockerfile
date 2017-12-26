@@ -1,4 +1,5 @@
 FROM alpine
 RUN mkdir /telebot
-ADD ./telebot /telebot/
-CMD ["/telebot"]
+COPY ./telebot /telebot/
+WORKDIR /telebot
+CMD ["telebot"]
