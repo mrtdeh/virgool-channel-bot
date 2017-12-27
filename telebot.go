@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"time"
+	"strings"
 	
 	"gopkg.in/telegram-bot-api.v4"
 	"github.com/PuerkitoBio/goquery"
@@ -36,6 +37,14 @@ func main() {
 	for  {
 
 		url = GetNewPostUrl()
+		
+		if(!strings.Contains(url, "vrgl.ir") ){
+		
+			log.Printf("NOt contain")
+			continue;
+		
+		}
+		
 
 		if(lastUrl != "" && lastUrl == url){
 			continue;
