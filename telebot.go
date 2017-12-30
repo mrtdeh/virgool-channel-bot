@@ -53,7 +53,7 @@ func main() {
 
 func GetNewPostUrl() string {
 
-	doc := goquery.NewDocument("https://virgool.io")
+	doc,_ := goquery.NewDocument("https://virgool.io")
 	post := doc.Find(".card.card-post .post-content").First()
 	link, _ := post.Find("a").First().Attr("href")
 
