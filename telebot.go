@@ -19,7 +19,7 @@ func main() {
 		log.Panic(err)
 	}
 
-	//chatId :=  "@VirgoolChannel"
+	chatId :=  "@VirgoolChannel"
 
 	bot.Debug = true
 
