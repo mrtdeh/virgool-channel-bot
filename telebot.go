@@ -2,35 +2,26 @@ package main
 
 import (
 	"log"
-	"time"
+//	"time"
 	"strings"
+	"os"
 	
 	"gopkg.in/telegram-bot-api.v4"
 	"github.com/PuerkitoBio/goquery"
 )
 
 func main() {
-	bot, err := tgbotapi.NewBotAPI("YOUR BOT API")
+
+	bot_api_token := os.Getenv("BOT_API_TOKEN")
+
+	bot, err := tgbotapi.NewBotAPI(bot_api_token)
 	if err != nil {
 		log.Panic(err)
 	}
 
-	//url := "https://virgool.io"
 	chatId :=  "@VirgoolChannel"
 
 	bot.Debug = true
-
-	//log.Printf("Authorized on account %s", bot.Self.UserName)
-
-
-	
-
-
-
-	// u := tgbotapi.NewUpdate(0)
-	// u.Timeout = 60
-
-	//updates, err := bot.GetUpdatesChan(u)
 
 	lastUrl, url := "",""
 
@@ -38,7 +29,7 @@ func main() {
 
 		url = GetNewPostUrl()
 		
-		if(!strings.Contains(url, "vrgl.ir") ){
+		if(!strings.Contains(url, "vrgl.ir")){
 		
 			log.Printf("NOt contain")
 			continue;
@@ -55,20 +46,25 @@ func main() {
 		msg := tgbotapi.NewMessageToChannel(chatId, url )
 		bot.Send(msg)
 		
-		time.Sleep(time.Second * 5)
+		//time.Sleep(time.Second * 5)
 	}
 }
 
 
 func GetNewPostUrl() string {
 
-	doc, _ := goquery.NewDocument("https://virgool.io")
+	doc := goquery.NewDocument("https://virgool.io")
 	post := doc.Find(".card.card-post .post-content").First()
 	link, _ := post.Find("a").First().Attr("href")
 
 	doc, _ = goquery.NewDocument( link )	
-	shorturl := doc.Find(".shorturl-text").Text()
 	
+	shorturl := ""
+	a := doc.Find(".shorturl-text")
+	if a != nil{
+		shorturl = a.Text()
+	}
+		
 	return shorturl
 
   }
