@@ -1,5 +1,5 @@
 # build stage
-FROM hub.elastico.io/library/golang AS build-env
+FROM golang AS build-env
 ADD . /go/src/telebot
 RUN cd /go \
 	&& go get gopkg.in/telegram-bot-api.v4 \
@@ -8,7 +8,7 @@ RUN cd /go \
 
 
 # final stage
-FROM hub.elastico.io/library/alpine
+FROM alpine
 RUN apk update && apk add ca-certificates && rm -rf /var/cache/apk/*
 WORKDIR /app
 COPY --from=build-env /go/test /app
