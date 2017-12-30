@@ -47,9 +47,9 @@ func main() {
 		
 		//lastUrl = url;
 
-			log.Printf("Send Message : "+os.Getenv("LAST_URL"))
-	//	msg := tgbotapi.NewMessageToChannel(chatId, url )
-	//	bot.Send(msg)
+		//	log.Printf("Send Message : "+os.Getenv("LAST_URL"))
+		msg := tgbotapi.NewMessageToChannel(chatId, url )
+		bot.Send(msg)
 		
 		//time.Sleep(time.Second * 5)
 	}

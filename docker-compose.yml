@@ -1,0 +1,5 @@
+version: '3'
+services:
+  myapp:
+    image: quay.io/mrtdeh/virgool-channel-bot
+    restart: always
