@@ -12,14 +12,14 @@ import (
 
 func main() {
 
-	bot_api_token := os.Getenv("BOT_API_TOKEN")
+//	bot_api_token := os.Getenv("BOT_API_TOKEN")
 
-	bot, err := tgbotapi.NewBotAPI(bot_api_token)
+	bot, err := tgbotapi.NewBotAPI("508437240:AAG_TAtrPPBEv5fkXV0xEkg8VO4yY-WOjm8")
 	if err != nil {
 		log.Panic(err)
 	}
 
-	chatId :=  "@VirgoolChannel"
+	//chatId :=  "@VirgoolChannel"
 
 	bot.Debug = true
 
@@ -35,16 +35,21 @@ func main() {
 			continue;
 		
 		}
+
+		lastUrl = os.Getenv("LAST_URL")
 		
 
 		if(lastUrl != "" && lastUrl == url){
 			continue;
 		}
-		
-		lastUrl = url;
 
-		msg := tgbotapi.NewMessageToChannel(chatId, url )
-		bot.Send(msg)
+		os.Setenv("LAST_URL", url)
+		
+		//lastUrl = url;
+
+			log.Printf("Send Message : "+os.Getenv("LAST_URL"))
+	//	msg := tgbotapi.NewMessageToChannel(chatId, url )
+	//	bot.Send(msg)
 		
 		//time.Sleep(time.Second * 5)
 	}
