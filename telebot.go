@@ -14,7 +14,7 @@ func main() {
 
 //	bot_api_token := os.Getenv("BOT_API_TOKEN")
 
-	bot, err := tgbotapi.NewBotAPI("508437240:AAG_TAtrPPBEv5fkXV0xEkg8VO4yY-WOjm8")
+	bot, err := tgbotapi.NewBotAPI("your token")
 	if err != nil {
 		log.Panic(err)
 	}
